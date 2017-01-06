@@ -589,11 +589,11 @@ func (t *cmdDashboard) handleGroupCommand(d map[string]interface{}) {
 				var addr = x.Addr
 				switch stats := s.Group.Stats[addr]; {
 				case stats == nil:
-					fmt.Printf("[?] "+format, g.Id, i, addr)
+					fmt.Printf("[?] " + format, g.Id, i, addr)
 				case stats.Error != nil:
-					fmt.Printf("[E] "+format, g.Id, i, addr)
+					fmt.Printf("[E] " + format, g.Id, i, addr)
 				case stats.Timeout || stats.Stats == nil:
-					fmt.Printf("[T] "+format, g.Id, i, addr)
+					fmt.Printf("[T] " + format, g.Id, i, addr)
 				default:
 					var master string
 					if s, ok := stats.Stats["master_addr"]; ok {
@@ -608,9 +608,9 @@ func (t *cmdDashboard) handleGroupCommand(d map[string]interface{}) {
 						expect = g.Servers[0].Addr + ":up"
 					}
 					if master == expect {
-						fmt.Printf("[ ] "+format, g.Id, i, addr)
+						fmt.Printf("[ ] " + format, g.Id, i, addr)
 					} else {
-						fmt.Printf("[X] "+format, g.Id, i, addr)
+						fmt.Printf("[X] " + format, g.Id, i, addr)
 					}
 					fmt.Printf("      ==> %s", master)
 				}
@@ -806,7 +806,7 @@ func (t *cmdDashboard) handleSlotRebalance(d map[string]interface{}) {
 			count[g.Id]++
 			if beg > end {
 				beg = slot
-			} else if slot != end+1 {
+			} else if slot != end + 1 {
 				batch = append(batch, []int{beg, end})
 				beg = slot
 			}
